@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flakysurvey</title>
+    <title>❄ Flaky Survey</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,29 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="top-bar">
+      <div class="logo">
+        <h1 class="heading">❄ Flaky Survey</h1>
+      </div>
+      <div class="user-info">
+        <% if @current_user %>
+          <p>Welcome, <%= @current_user.username %></p>
+        <% else %>
+          <p><a href="/sessions/new">Sign in to get this survey train rolling!</a></p>
+        <% end %>
+      </div>
+      <div class="pull-right">
+        <% if @current_user %>
+          <a class="btn" href="/sign_out" style="margin-top: 30%">↪ Sign out</a>
+        <% else %>
+          <a class="btn" href="/sessions/new">☞ Sign In</a>
+          <br>
+          <a class="btn" href="/users/new">✎ Sign Up</a>
+        <% end %>
+      </div>
+    </div>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

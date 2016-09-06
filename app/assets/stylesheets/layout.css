@@ -1,0 +1,59 @@
+/*
+This file contains CSS pertaining to layout template files, such as views/layouts/application.html.
+ */
+
+body {
+  background-color: #EEE;
+  margin: 0px;
+}
+
+main {
+  padding: 40px 80px;
+}
+
+.top-bar {
+  background-color: black;
+  padding: 10px 40px;
+  top: 0;
+  width: 100%;
+}
+
+.top-bar > .logo {
+  display: inline-block;
+}
+
+.top-bar > .logo > h1 {
+  color: white;
+}
+
+.top-bar > .pull-right {
+  display: inline-block;
+  position: absolute;
+  right: 40px;
+}
+
+.user-info {
+  display: inline-block;
+  margin: 0px 20px;
+}
+
+.user-info > * > *, .user-info > * {
+  color: #DDD;
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #EFEFEF;
+  border: 1px solid #FFF
+  color: black;
+  padding: 5px;
+  margin: 3px;
+  width: 80px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #DEDEDE;
+}
