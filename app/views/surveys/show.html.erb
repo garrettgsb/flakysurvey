@@ -1,4 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<h1><%= @survey.title %></h1>
+<h3>by <%= @survey.user.username %></h3>
+
+<div class="question">
+  <div class="prompt">
+  </div>
+  <div class="answer">
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_user_survey_path(@survey) %> |
+<%= link_to 'Back', user_surveys_path %>

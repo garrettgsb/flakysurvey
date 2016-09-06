@@ -12,15 +12,21 @@ class SurveyTest < ActiveSupport::TestCase
 #----------------
 
 #Survey creation
-  test "Survey cannot be created without user ID" do
+  test "Survey cannot be saved without user ID" do
     orphanSurvey = Survey.new(:user_id => nil)
     assert_not orphanSurvey.save
   end
 
-  test "Survey with user ID saves successfully" do
+  test "Survey cannot be saved without title." do
+    user = User.new(:username => "Dave", :password => "12345678", :password_confirmation => "12345678")
+    invisibleSurvey = Survey.new(:user_id => User.last.id, :title => nil)
+    assert_not invisibleSurvey.save
+  end
+
+  test "Survey with user ID and title saves successfully" do
     user = User.new(:username => "Dave", :password => "12345678", :password_confirmation => "12345678")
     user.save
-    normalSurvey = Survey.new(:user_id => user.id)
+    normalSurvey = Survey.new(:user_id => user.id, :title => "What are a few of your favorite things?")
     assert normalSurvey.save
   end
 

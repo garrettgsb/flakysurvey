@@ -7,8 +7,129 @@ body {
   margin: 0px;
 }
 
+a {
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #EFEFEF;
+  border: 1px solid #FFF;
+  color: black;
+  padding: 5px;
+  margin: 3px;
+  width: 80px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #DEDEDE;
+}
+
+.card {
+  background: #F4F4F4;
+  border: 1px solid rgba(0,0,0,0);
+  display: block;
+  padding: 20px;
+  margin: 5px;
+  text-align: center;
+}
+
+.card > p, .card > h3 {
+  margin: 5px;
+}
+
+.card:hover {
+  margin: 4px;
+  background: #F8F8F8;
+  border: 1px solid #DDD;
+}
+
+.card.muted {
+  background: #D8D8D8;
+  border: 1px dashed #AAA;
+  padding: 5px;
+}
+
+.card.muted:hover {
+  border: 1px dashed #444;
+  background-color: #AAA;
+  margin: 4px;
+}
+
+input[type=text] {
+  min-width: 400px;
+  max-width: 100%
+}
+
+.list-container {
+  width: 60%;
+}
+
 main {
   padding: 40px 80px;
+}
+
+.question-area {
+  background: #F0F0F0;
+  border: 1px solid rgba(0,0,0,0);
+  display: block;
+  padding: 20px;
+  margin: 5px;
+}
+
+.question-input > span {
+  margin-left: 26px;
+}
+
+.question-area:hover {
+  margin: 4px;
+  background: #FAFAFA;
+  border: 1px solid #DDD;
+}
+
+.question-area.muted {
+  background: #D8D8D8;
+  border: 1px dashed #AAA;
+  padding: 5px;
+}
+
+.question-area.muted:hover {
+  border: 1px dashed #444;
+  background-color: #AAA;
+}
+
+.question-input {
+  display: inline-block;
+  width: 50%;
+}
+
+.question-preview {
+  display: inline-block;
+  float: right;
+  width: 50%;
+}
+
+.question-section {
+  background: #F8F8F8;
+  border: 1px solid rgba(240,240,240,1);
+  display: block;
+  padding: 20px;
+  margin: 5px;
+}
+
+.response-list {
+  display: inline-block;
+  float: right;
+}
+
+.survey {
+  margin: 80px 0px;
+}
+
+.survey-list {
+  display: inline-block;
 }
 
 .top-bar {
@@ -40,20 +161,4 @@ main {
 .user-info > * > *, .user-info > * {
   color: #DDD;
   text-decoration: none;
-}
-
-.btn {
-  display: inline-block;
-  background-color: #EFEFEF;
-  border: 1px solid #FFF
-  color: black;
-  padding: 5px;
-  margin: 3px;
-  width: 80px;
-  text-align: center;
-  text-decoration: none;
-}
-
-.btn:hover {
-  background-color: #DEDEDE;
 }

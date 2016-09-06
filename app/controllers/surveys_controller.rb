@@ -14,7 +14,7 @@ class SurveysController < ApplicationController
 
   # GET /surveys/new
   def new
-    @survey = Survey.new
+    @survey = @current_user.surveys.build
   end
 
   # GET /surveys/1/edit
@@ -35,7 +35,7 @@ class SurveysController < ApplicationController
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
     end
-  end
+end
 
   # PATCH/PUT /surveys/1
   # PATCH/PUT /surveys/1.json
@@ -56,7 +56,7 @@ class SurveysController < ApplicationController
   def destroy
     @survey.destroy
     respond_to do |format|
-      format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
+      format.html { redirect_to user_surveys_url, notice: 'Survey was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class SurveysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def survey_params
-      params.fetch(:survey, {})
+      params.fetch(:survey, {}).permit(:title)
     end
 end
