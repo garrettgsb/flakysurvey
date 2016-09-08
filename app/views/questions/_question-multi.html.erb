@@ -1,0 +1,19 @@
+<!--
+MULTI SELECT QUESTION
+-->
+<div class="question-area">
+  <h3><%= question.prompt %></h3>
+  <div id="multi" class="multi-select-question">
+    <div id="multi" class="multi-select-question-input question-input">
+      <div class="question-section">
+        <% question.choices.each do |choice| %>
+          <label>
+            <input type="checkbox" name="1" />
+            <span class="select-label"><%= choice.text %></span>
+          </label>
+        <% end %>
+        <input type="hidden" class="question-type" value="multi">
+      </div>
+    </div>
+  </div>
+</div>

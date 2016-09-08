@@ -1,0 +1,36 @@
+<div class="user_stuff">
+  <h1><%= @this_user.username %></h1>
+</div>
+<div class="list-container">
+  <div class="survey-list">
+    <header>
+      <h2><%= @this_user.username %>'s Surveys</h2>
+    </header>
+    <content>
+      <% if @surveys.length > 0 %>
+        <% @surveys.each do |survey| %>
+          <div class="card">
+            <h3><a href="/users/<%= @this_user.id %>/surveys/<%= survey.id %>"><%= survey.title %></a></h3>
+          </div>
+        <% end %>
+        <div class="card muted">
+          <p><%= link_to "➕ Make a new survey", new_user_survey_url(@this_user.id) %></p>
+        </div>
+      <% else %>
+        <div class="card">
+          <h3>No surveys</h3>
+          <p>(Click to make one)</p>
+      <% end %>
+    </content>
+  </div>
+  <div class="response-list">
+    <header>
+      <h2><%= @this_user.username %>'s Responses</h2>
+    </header>
+    <content>
+      <div class="card">Response 1</div>
+      <div class="card">Response 2</div>
+      <div class="card">Response 3</div>
+    </content>
+  </div>
+</div>

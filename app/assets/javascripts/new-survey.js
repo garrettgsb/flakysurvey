@@ -15,21 +15,45 @@ $(document).ready(function(){
     $(`#question-${questionCount}`).load('/questions #choose', function(){
       $("#choose-text").on('click', function(){
         var container = $(this).parents()[1];
-        $(container).load("/questions #text");
+
+        //Set up input fields to be passed as question params when form is posted
+        $(container).load("/questions #text", function(){
+          var thisQuestion = `#question-${questionCount}`
+          $(thisQuestion).find(".question-type").first().attr("name",`questions[question-${questionCount}][question_type]`);
+          $(thisQuestion).find(".question-prompt").first().attr("name",`questions[question-${questionCount}][prompt]`);
+          $(thisQuestion).find(".question-placeholder").first().attr("name",`questions[question-${questionCount}][placeholder]`);
+          questionCount += 1;
+        });
         $("#add-question").css('visibility','visible');
+
       });
       $("#choose-single").on('click', function(){
         var container = $(this).parents()[1];
-        $(container).load("/questions #single");
+
+        //TODO: Set params for this question type
+        $(container).load("/questions #single", function(){
+          var thisQuestion = `#question-${questionCount}`
+          $(thisQuestion).find(".question-type").first().attr("name",`questions[question-${questionCount}][question_type]`);
+          $(thisQuestion).find(".question-prompt").first().attr("name",`questions[question-${questionCount}][prompt]`);
+          $(thisQuestion).find(".radio-label").each(function(){ $(this).attr("name",`questions[question-${questionCount}][choice][]`) });
+          questionCount += 1;
+        });
         $("#add-question").css('visibility','visible');
       });
       $("#choose-multi").on('click', function(){
         var container = $(this).parents()[1];
-        $(container).load("/questions #multi");
+
+        //TODO: Set params for this question type
+        $(container).load("/questions #multi", function() {
+          var thisQuestion = `#question-${questionCount}`
+          $(thisQuestion).find(".question-type").first().attr("name",`questions[question-${questionCount}][question_type]`);
+          $(thisQuestion).find(".question-prompt").first().attr("name",`questions[question-${questionCount}][prompt]`);
+          $(thisQuestion).find(".checkbox-label").each(function(){ $(this).attr("name",`questions[question-${questionCount}][choice][]`) });
+          questionCount += 1;
+        });
         $("#add-question").css('visibility','visible');
       });
     });
     $(`#question-${questionCount}`).before(`<h2>Question ${questionCount}</h2>`);
-    questionCount += 1;
   });
 });

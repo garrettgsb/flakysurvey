@@ -10,14 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160906183245) do
+ActiveRecord::Schema.define(version: 20160907225558) do
+
+  create_table "choices", force: :cascade do |t|
+    t.integer  "question_id"
+    t.integer  "order_id"
+    t.text     "text"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_choices_on_question_id"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.integer  "survey_id"
-    t.string   "type"
+    t.string   "question_type"
     t.text     "prompt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "order_id"
+    t.text     "placeholder"
     t.index ["survey_id"], name: "index_questions_on_survey_id"
   end
 

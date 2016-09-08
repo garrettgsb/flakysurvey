@@ -58,9 +58,16 @@ a {
   margin: 4px;
 }
 
+input[type=submit] {
+  background-color: white;
+  border: 1px solid #aaa;
+  height: 40px;
+  margin: 5px 5px;
+}
+
 input[type=text] {
   min-width: 400px;
-  max-width: 100%
+  max-width: 100%;
 }
 
 .list-container {
@@ -73,7 +80,7 @@ main {
 
 .question-area {
   background: #F0F0F0;
-  border: 1px solid rgba(0,0,0,0);
+  border: 1px solid rgba(0,0,0,0.2);
   display: block;
   padding: 20px;
   margin: 5px;

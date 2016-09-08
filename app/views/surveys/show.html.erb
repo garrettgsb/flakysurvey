@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= @survey.title %></h1>
 <h3>by <%= @survey.user.username %></h3>
 
-<div class="question">
-  <div class="prompt">
-  </div>
-  <div class="answer">
-  </div>
-</div>
+<% @questions.each do |question| %>
+  <% if question.question_type == "multi" %>
+    <%= render partial: 'questions/question-multi', locals: { question: question }  %>
+  <% elsif question.question_type == "single" %>
+    <%= render partial: 'questions/question-single', locals: { question: question }  %>
+  <% elsif question.question_type = "text" %>
+    <%= render partial: 'questions/question-text', locals: { question: question }  %>
+  <% end %>
+
+<% end %>
 
 <%= link_to 'Edit', edit_user_survey_path(@survey) %> |
 <%= link_to 'Back', user_surveys_path %>

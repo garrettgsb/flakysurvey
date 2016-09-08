@@ -15,7 +15,7 @@
       </div>
       <div class="user-info">
         <% if @current_user %>
-          <p>Welcome, <%= @current_user.username %></p>
+          <a href="/users/<%= @current_user.id %>">Welcome, <%= @current_user.username %></a>
         <% else %>
           <p><a href="/sessions/new">Sign in to get this survey train rolling!</a></p>
         <% end %>

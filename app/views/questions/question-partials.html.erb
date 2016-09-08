@@ -1,3 +1,6 @@
+<!--
+CHOOSE QUESTION TYPE
+-->
 <div class="question-area">
   <h3>Choose Question Type:</h3>
   <div id="choose" class="text-question-input question-input">
@@ -13,20 +16,28 @@
     </div>
   </div>
 </div>
+
+<!--
+TEXT QUESTION
+-->
 <div class="question-area">
   <h3>Text Question:</h3>
   <div id="text" class="text-question-input question-input">
       <span>Prompt:</span>
-      <input class="question-prompt" type="text" placeholder="What are some of the best things?">
+      <input name="" class="question-prompt" type="text" placeholder="What are some of the best things?">
     <div class="question-section">
       <span>Placeholder Text:</span>
-      <input class="question-placeholder" type="text" placeholder="Please list no more than three types of motorcycles.">
+      <input name="" class="question-placeholder" type="text" placeholder="Please list no more than three types of motorcycles.">
     </div>
+    <input type="hidden" class="question-type" value="text">
   </div>
   <div class="text-question-preview question-preview">
   </div>
 </div>
 
+<!--
+SINGLE SELECT QUESTION
+-->
 <div class="question-area">
   <h3>Single-Select Question:</h3>
   <div id="single" class="single-select-question-input question-input">
@@ -43,10 +54,14 @@
         <input type="text" class="radio-label" placeholder="Blue doesn't do it for me.">
       </label>
       <span class="add-option" onclick="alert(`No don't.`)">➕ Add option</span>
+      <input type="hidden" class="question-type" value="single">
     </div>
   </div>
 </div>
 
+<!--
+MULTI SELECT QUESTION
+-->
 <div class="question-area">
   <h3>Multiple-Select Question:</h3>
   <div id="multi" class="multi-select-question">
@@ -64,6 +79,7 @@
           <input type="text" class="checkbox-label" placeholder="Polaris is nice.">
         </label>
         <span class="add-option" onclick="alert(`No don't.`)">➕ Add option</span>
+        <input type="hidden" class="question-type" value="multi">
     </div>
   </div>
 </div>
