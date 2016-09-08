@@ -1,4 +1,4 @@
-<h1>Surveys</h1>
+<h1><%= @this_user.username %>'s Surveys</h1>
 
 <table>
   <thead>
@@ -11,8 +11,10 @@
     <% @surveys.each do |survey| %>
       <tr>
         <td><%= link_to survey.title, user_survey_url(@current_user, survey) %></td>
-        <td><%= link_to '✎ Edit', edit_user_survey_path(@current_user, survey) %></td>
-        <td><%= link_to '♻︎ Del', user_survey_url(@current_user, survey), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @my_survey %>
+          <td><%= link_to '✎ Edit', edit_user_survey_path(@current_user, survey) %></td>
+          <td><%= link_to '♻︎ Del', user_survey_url(survey.user, survey), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

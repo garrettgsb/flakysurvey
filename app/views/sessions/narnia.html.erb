@@ -1,13 +1,13 @@
 <div class="narnia">
-  <h1>WHOA WHERE AM I?</h1>
-  <% if flash[:alert] %>
-    <div class="flash">
-      <p class="alert"><%= flash[:alert] %></p>
+  <h1>Yo You Like Surveys, Right?</h1>
+</div>
+<div class="all-of-the-everythings">
+  <% @surveys.each do |survey| %>
+  <a href="/users/<%= survey.user_id %>/surveys/<%= survey.id %>">
+    <div class="card">
+      <h3><%= survey.title %></h3>
+      <h4>by <%= survey.user.username %></h4>
     </div>
-  <% end %>
-  <% if flash[:notice] %>
-    <div class="flash">
-      <p class="notice"><%= flash[:notice] %></p>
-    </div>
+  </a>
   <% end %>
 </div>

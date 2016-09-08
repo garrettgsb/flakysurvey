@@ -52,16 +52,17 @@ class SurveyTest < ActiveSupport::TestCase
   end
 
   test "If survey belongs to a user but is NOT saved, that's a problem." do
-    user = User.create(:username => "Dave", :password => "12345678", :password_confirmation => "12345678")
-    survey = user.surveys.new
-    question = survey.questions.new(:prompt => "Why are we here?")
+    user = User.create(user_params)
+    survey = user.surveys.new(survey_params)
+    question = survey.questions.new(question_params)
     assert_not question.save
   end
 
   test "If survey belongs to a user and is saved, create all the questions you wish." do
-    user = User.create(:username => "Dave", :password => "12345678", :password_confirmation => "12345678")
-    survey = user.surveys.new
+    user = User.create(user_params)
+    survey = user.surveys.new(survey_params)
     survey.save
-    assert survey.questions.create(:prompt => "Why is there something instead of nothing?")
+    question = survey.questions.new(question_params)
+    assert question.save
   end
 end

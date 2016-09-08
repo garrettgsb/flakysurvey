@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  get '/narnia', to: 'sessions#narnia'
+  get '/', to: 'sessions#narnia'
+  get '/sign_in', to: 'sessions#new'
   get '/sign_out', to: 'sessions#sign_out'
   get '/questions', to: 'application#questions'
+  post '/submit', to: 'surveys#submit'
+  get '/thanks', to: 'surveys#thanks'
   resources :users do
     resources :surveys
   end

@@ -1,10 +1,12 @@
 class SurveysController < ApplicationController
+  before_action :yo_you_should_log_in
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
 
   # GET /surveys
   # GET /surveys.json
   def index
-    @surveys = Survey.all
+    @this_user = User.find(params[:user_id])
+    @surveys = Survey.where(:user_id => @this_user.id)
   end
 
   # GET /surveys/1
@@ -12,6 +14,34 @@ class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
     @questions = @survey.questions
+    @my_survey ? (render 'stats') : (render 'show')
+  end
+
+  def submit
+    # Find survey based on question ID
+    @this_survey = Survey.find(params[:survey])
+    Response.transaction do
+      Answer.transaction do
+        @response = @current_user.responses.create(:survey_id => @this_survey.id)
+        params[:questions].each do |question_id|
+          if params[:questions][question_id]["answer"]
+            answer_text = params[:questions][question_id]["answer"]
+          else
+            choices = []
+            params[:questions][question_id].each do |key|
+                choices << key
+            end
+            answer_text = choices.join(",")
+          end
+          @response.answers.create(:answer => answer_text, :question_id => question_id)
+        end
+      end # Answer.transaction
+    end # Response.transaction
+    redirect_to 'thanks', survey: @this_survey.id, response: @response.id
+  end
+
+  def thanks
+    byebug
   end
 
   # GET /surveys/new
@@ -104,8 +134,14 @@ end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
+    def yo_you_should_log_in
+     redirect_to '/sign_in' unless @current_user
+    end
+
     def set_survey
       @survey = Survey.find(params[:id])
+      @my_survey = @current_user.id == @survey.user.id
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

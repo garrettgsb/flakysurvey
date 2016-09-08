@@ -1,0 +1,9 @@
+<h1>Thanks for filling out <%= @survey.title %>!</h1>
+
+<p>
+  If you want to go back and change your answers, <a href="#nowhere">click here</a>,
+  or go to "My Responses" at the top of the page.
+</p>
+
+<%= link_to 'Edit', "/users/#{params[:user_id]}/surveys/#{params[:id]}/edit" %> |
+<%= link_to 'Back', user_surveys_path %>

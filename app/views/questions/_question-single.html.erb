@@ -7,7 +7,7 @@ SINGLE SELECT QUESTION
     <div class="question-section">
       <% question.choices.each do |choice| %>
       <label>
-        <input type="radio" name="1" />
+        <input type="radio" name="questions[<%= question.id %>][<%= choice.id %>][]" />
         <span class="select-label"><%= choice.text %></span>
       </label>
       <% end %>

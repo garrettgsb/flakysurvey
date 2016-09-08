@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     else
       flash[:alert] = "Incorrect login credentials"
     end
-      redirect_to :narnia
+      redirect_to '/'
   end
 
   def sign_out
@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def narnia
-    # byebug
+    @surveys = Survey.all
   end
 
   private

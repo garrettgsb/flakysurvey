@@ -2,4 +2,4 @@
 
 <%= render 'form', survey: @survey %>
 
-<%= link_to 'Back', user_surveys_path %>
+<%= link_to 'Back', "/users/#{params[:user_id]}/surveys/#{params[:id]}" %>

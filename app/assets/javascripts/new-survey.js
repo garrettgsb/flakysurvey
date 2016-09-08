@@ -1,8 +1,7 @@
 $(document).ready(function(){
   var questionCount = 1;
   var textQuestion = null;
-  console.log("Yep, this is loading.");
-
+  
   //"Add Question" button
   $("#add-question").on('click', function() {
 

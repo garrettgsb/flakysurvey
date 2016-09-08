@@ -8,7 +8,7 @@ MULTI SELECT QUESTION
       <div class="question-section">
         <% question.choices.each do |choice| %>
           <label>
-            <input type="checkbox" name="1" />
+            <input type="checkbox" name="questions[<%= question.id %>][<%= choice.id %>][]" />
             <span class="select-label"><%= choice.text %></span>
           </label>
         <% end %>

@@ -2,13 +2,43 @@
 This file contains CSS pertaining to layout template files, such as views/layouts/application.html.
  */
 
+ :root {
+   --muted: #324;
+   --muted-text: #888;
+   --highlight: #525;
+   --highlight-text: #66F;
+ }
+
 body {
   background-color: #EEE;
   margin: 0px;
+  overflow-x: hidden;
 }
 
 a {
   text-decoration: none;
+}
+
+a:hover {
+  color: var(--highlight-text);
+}
+
+.a_b {
+ margin-top: 80px;
+}
+
+.a_b > .a_col {
+  display: inline-block;
+  width: 50%;
+}
+
+.a_b > .b_col {
+  display: inline-block;
+  float: right;
+  width: 50%;
+}
+.add {
+  cursor: copy;
 }
 
 .btn {
@@ -58,6 +88,17 @@ a {
   margin: 4px;
 }
 
+.heading {
+  color: white;
+  font-size: 2em;
+  transition-duration: 1s;
+}
+
+.heading:hover {
+  color: #CCC;
+  text-shadow: -4px 4px 3px #444;
+}
+
 input[type=submit] {
   background-color: white;
   border: 1px solid #aaa;
@@ -65,9 +106,16 @@ input[type=submit] {
   margin: 5px 5px;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   min-width: 400px;
   max-width: 100%;
+}
+
+label {
+  font-family: Lato;
+  font-weight: light;
+  letter-spacing: 0.05em;
+  line-height: 1.5em;
 }
 
 .list-container {
@@ -76,6 +124,27 @@ input[type=text] {
 
 main {
   padding: 40px 80px;
+}
+
+.nav-area {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+}
+
+.nav-button {
+  display: inline;
+  background: #EEE;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-left: 10px;
+  padding: 10px 5px;
+  bottom: 0;
+}
+
+.nav-buttons {
+  list-style: none;
+  margin: 9px;
 }
 
 .question-area {
@@ -118,12 +187,19 @@ main {
   width: 50%;
 }
 
+.question-prompt {
+  margin-left: 26px;
+}
+
 .question-section {
   background: #F8F8F8;
   border: 1px solid rgba(240,240,240,1);
   display: block;
   padding: 20px;
   margin: 5px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%
 }
 
 .response-list {
@@ -139,10 +215,34 @@ main {
   display: inline-block;
 }
 
+textarea {
+  background-color: var(--muted);
+  border-radius: 10px;
+  cursor: text;
+  color: var(--muted-text);
+  font-family: Lato;
+  font-weight: 100;
+  font-size: 1em;
+  letter-spacing: 0.05em;
+  line-height: 1.5em;
+  padding: 10px 5px 5px 15px;
+  border-style: none;
+  transition-duration: 1s;
+}
+
+textarea:focus {
+  border-radius: 5px;
+  box-shadow: 1px 3px 1px 2px #AAA;
+  background-color: var(--highlight);
+  color: #EFEFEF;
+}
+
 .top-bar {
   background-color: black;
   padding: 10px 40px;
+  position: relative;
   top: 0;
+  max-height: 10%;
   width: 100%;
 }
 
@@ -155,11 +255,18 @@ main {
 }
 
 .top-bar > .pull-right {
+  border: none;
+  bottom: 0;
+  margin-bottom: 0;
   display: inline-block;
   position: absolute;
-  right: 40px;
+  right: 80px;
 }
 
+.top-bar > .pull-right > * {
+  border: 0;
+  margin: 0;
+}
 .user-info {
   display: inline-block;
   margin: 0px 20px;
@@ -168,4 +275,8 @@ main {
 .user-info > * > *, .user-info > * {
   color: #DDD;
   text-decoration: none;
+}
+
+#welcome-link:hover {
+  color: #66F;
 }
