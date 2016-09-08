@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
   before_action :yo_you_should_log_in
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
+  before_action :get_current_user_response
 
   # GET /surveys
   # GET /surveys.json
@@ -12,8 +13,6 @@ class SurveysController < ApplicationController
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-    @survey = Survey.find(params[:id])
-    @questions = @survey.questions
     @my_survey ? (render 'stats') : (render 'show')
   end
 
@@ -22,26 +21,31 @@ class SurveysController < ApplicationController
     @this_survey = Survey.find(params[:survey])
     Response.transaction do
       Answer.transaction do
-        @response = @current_user.responses.create(:survey_id => @this_survey.id)
+        @response = @current_user.responses.find_or_create_by(:survey_id => @this_survey.id)
         params[:questions].each do |question_id|
-          if params[:questions][question_id]["answer"]
-            answer_text = params[:questions][question_id]["answer"]
-          else
-            choices = []
-            params[:questions][question_id].each do |key|
-                choices << key
-            end
-            answer_text = choices.join(",")
-          end
-          @response.answers.create(:answer => answer_text, :question_id => question_id)
-        end
+          case Question.find(question_id).question_type
+            when "text"
+              answer_text = params[:questions][question_id]["answer"]
+            when "multi"
+              choices = []
+              params[:questions][question_id].each do |key|
+                  choices << key
+              end
+              answer_text = choices.join(",")
+            when "single"
+              answer_text = params[:questions][question_id][0]
+          end #case
+          answer = @response.answers.find_or_create_by(:question_id => question_id)
+          answer.update(:answer => answer_text)
+        end # params[:questions].each
       end # Answer.transaction
     end # Response.transaction
-    redirect_to 'thanks', survey: @this_survey.id, response: @response.id
-  end
+    redirect_to '/thanks'
+  end # def submit
 
   def thanks
-    byebug
+    @response = @current_user.responses.last
+    @survey = @response.survey
   end
 
   # GET /surveys/new
@@ -141,6 +145,7 @@ end
 
     def set_survey
       @survey = Survey.find(params[:id])
+      @questions = @survey.questions.all
       @my_survey = @current_user.id == @survey.user.id
     end
 
@@ -151,5 +156,11 @@ end
 
     def questions_params
       params.fetch(:questions, {}).permit!
+    end
+
+    def get_current_user_response
+      @current_user_response = nil || @survey.responses.find_by(:user_id => @current_user.id) if @survey
+      @answers = @current_user_response.answers.all if @current_user_response
+
     end
 end

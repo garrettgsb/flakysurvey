@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/thanks', to: 'surveys#thanks'
   resources :users do
     resources :surveys
+    resources :responses
   end
   resources :sessions
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

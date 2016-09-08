@@ -24,6 +24,7 @@
         <ul class="nav-buttons">
           <a href="/"><li class="nav-button">Browse Surveys</li></a>
           <a href="/users/<%= @current_user ? @current_user.id : 1 %>/surveys"><li class="nav-button">My Surveys</li></a>
+          <a href="/users/<%= @current_user ? @current_user.id : 1 %>/responses"><li class="nav-button">My Responses</li></a>
           <a href="/users/<%= @current_user ? @current_user.id : 1 %>/surveys/new"><li class="nav-button">New Survey</li></a>
         </ul>
       </div>

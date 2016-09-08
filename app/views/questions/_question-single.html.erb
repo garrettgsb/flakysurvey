@@ -3,11 +3,16 @@ SINGLE SELECT QUESTION
 -->
 <div class="question-area">
   <h3><%= question.prompt %></h3>
+  <% answer = @current_user_response.answers.find_by(:question_id => question.id).answer if @current_user_response %>
   <div id="single" class="single-select-question-input question-input">
     <div class="question-section">
       <% question.choices.each do |choice| %>
       <label>
-        <input type="radio" name="questions[<%= question.id %>][<%= choice.id %>][]" />
+        <% if answer.to_i == choice.id.to_i %>
+          <input type="radio" name="questions[<%= question.id %>]" value="<%= choice.id %>" checked />
+        <% else %>
+          <input type="radio" name="questions[<%= question.id %>]" value="<%= choice.id %>" />
+        <% end %>
         <span class="select-label"><%= choice.text %></span>
       </label>
       <% end %>

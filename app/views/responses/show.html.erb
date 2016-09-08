@@ -1,0 +1,18 @@
+<h3><%= @this_user.username %>'s Response to</h3>
+<h1><%= @survey.title %></h1>
+<h3>by <%= @survey.user.username %></h3>
+
+<form id="survey" action="/submit" method="post">
+  <%= token_tag %>
+  <% @questions.each do |question| %>
+    <% if question.question_type == "multi" %>
+      <%= render partial: 'questions/question-multi', locals: { question: question }  %>
+    <% elsif question.question_type == "single" %>
+      <%= render partial: 'questions/question-single', locals: { question: question }  %>
+    <% elsif question.question_type = "text" %>
+      <%= render partial: 'questions/question-text', locals: { question: question }  %>
+    <% end %>
+  <% end %>
+  <input type="hidden" name="survey" value="<%= @survey.id %>">
+  <input type="submit" id="submit" value="Submit Response">
+</form>

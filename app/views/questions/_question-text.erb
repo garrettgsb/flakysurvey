@@ -5,7 +5,7 @@ TEXT QUESTION
   <div id="text" class="text-question-input question-input">
     <h3><%= question.prompt %></h3>
     <div class="question-section">
-      <textarea cols="50" rows="4" name="questions[<%=question.id%>][answer]"><%= question.placeholder %></textarea>
+      <textarea cols="50" rows="4" name="questions[<%=question.id%>][answer]"><%= @current_user_response ? @current_user_response.answers.find_by(:question_id => question.id).answer : question.placeholder %></textarea>
     </div>
     <input type="hidden" class="question-type" value="text">
   </div>

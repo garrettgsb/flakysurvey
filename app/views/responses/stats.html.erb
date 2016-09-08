@@ -1,0 +1,13 @@
+<h1>Stats for <%= @survey.title %></h1>
+<h3>by <%= @survey.user.username %></h3>
+
+<% @questions.each do |question| %>
+  <div class="card">
+    <h4><%= question.prompt %></h4>
+    <p><strong>Responses:</strong> <%= Random.rand(0..200) %></p>
+    <p>
+  </div>
+<% end %>
+
+<%= link_to 'Edit', "/users/#{params[:user_id]}/surveys/#{params[:id]}/edit" %> |
+<%= link_to 'Back', user_surveys_path %>

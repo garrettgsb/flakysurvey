@@ -1,0 +1,19 @@
+<%= form_for [@current_user, @survey] do |f| %>
+
+  <div class="question-area">
+      <h2>Every good survey has a title</h2>
+    <%= f.text_field :title %>
+    <input type="hidden" value="<%= @current_user.id %>" name="user[id]">
+    <div class="actions">
+    </div>
+  </div>
+
+  <div class="question-area">
+    <div class="muted" id="add-question">
+      <h3 class="add">➕ Add Question</h3>
+    </div>
+  </div>
+  <span class="submit-button">
+    <%= f.submit "Create that survey ➡" %>
+  </span>
+<% end %>

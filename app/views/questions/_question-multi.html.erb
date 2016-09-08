@@ -3,12 +3,20 @@ MULTI SELECT QUESTION
 -->
 <div class="question-area">
   <h3><%= question.prompt %></h3>
+  <%
+    answer = @current_user_response.answers.find_by(:question_id => question.id).answer if @current_user_response
+    answer = answer.split(',')
+  %>
   <div id="multi" class="multi-select-question">
     <div id="multi" class="multi-select-question-input question-input">
       <div class="question-section">
         <% question.choices.each do |choice| %>
           <label>
-            <input type="checkbox" name="questions[<%= question.id %>][<%= choice.id %>][]" />
+            <% if answer.include? choice.id.to_s %>
+              <input type="checkbox" name="questions[<%= question.id %>][<%= choice.id %>][]" checked="checked"/>
+            <% else %>
+              <input type="checkbox" name="questions[<%= question.id %>][<%= choice.id %>][]"/>
+            <% end %>
             <span class="select-label"><%= choice.text %></span>
           </label>
         <% end %>
