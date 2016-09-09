@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     @selected_user = User.find_by(:username => params[:session][:username])
-    if @selected_user.password == params[:session][:password]
+    if @selected_user && @selected_user.password == params[:session][:password]
       session[:current_user_id] = @selected_user.id
       @current_user = User.find(session[:current_user_id])
       flash[:notice] = "Logged in successfully as #{@current_user.username}"
