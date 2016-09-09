@@ -2,25 +2,19 @@
 # Flaky Survey
 ## The survey app that lets you change your mind
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a basic survey app built in Rails 5. To use, run:
 
-Things you may want to cover:
+`rails db:migrate`
+`rails s`
 
-* Ruby version
+You should then be able to head straight to `localhost:3000` in your favorite browser and start doing stuff.
 
-* System dependencies
+Lots of undocumented bugs in this version, but basic functions work if you're careful. You can:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Create an account
+* Sign in and out
+* View a list of all surveys
+* View a list of your surveys
+* Respond to any survey that isn't yours
+* View all of your responses
+* Change your responses after submitting
