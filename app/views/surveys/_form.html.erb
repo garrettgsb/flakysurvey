@@ -2,15 +2,22 @@
 
   <div class="question-area">
       <h2>Every good survey has a title</h2>
-    <%= f.text_field :title %>
+      <p style="background-color: #FAA; padding: 10px; margin-bottom: 0px;">
+        <strong>NOTE:</strong> There is a known bug on this form where if the text field for the
+        survey title is clicked before the "Add Question" button is clicked at
+        least once, then the "Add Question" button just doesn't work.
+      </p>
+    <p style="background-color: #FCC; padding: 10px; margin-top: 0px;">
+        • If you add at least one question before touching the title text field,
+        the form works like normal. For some reason.
+    </p>
+    <input type="text" name="survey[title]">
     <input type="hidden" value="<%= @current_user.id %>" name="user[id]">
-    <div class="actions">
-    </div>
   </div>
 
-  <div class="question-area">
-    <div class="muted" id="add-question">
-      <h3 class="add">➕ Add Question</h3>
+  <div class="question-area" id="add-question">
+    <div class="muted">
+      <h3>➕ Add Question</h3>
     </div>
   </div>
   <span class="submit-button">

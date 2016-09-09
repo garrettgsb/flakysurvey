@@ -37,8 +37,9 @@ a:hover {
   float: right;
   width: 50%;
 }
-.add {
+#add-question {
   cursor: copy;
+  display: block;
 }
 
 .btn {

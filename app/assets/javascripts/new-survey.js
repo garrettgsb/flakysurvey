@@ -1,7 +1,6 @@
 $(document).ready(function(){
   var questionCount = 1;
-  var textQuestion = null;
-  
+
   //"Add Question" button
   $("#add-question").on('click', function() {
 

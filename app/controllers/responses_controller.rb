@@ -19,6 +19,7 @@ class ResponsesController < ApplicationController
 
   def show
     @response = params[:id]
+    redirect_to "/users/#{@survey.user_id}/surveys/#{@survey.id}"
   end
 
   private
