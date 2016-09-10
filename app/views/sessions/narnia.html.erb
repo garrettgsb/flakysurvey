@@ -1,13 +1,27 @@
 <div class="narnia">
   <h1>Yo You Like Surveys, Right?</h1>
 </div>
-<div class="all-of-the-everythings">
-  <% @surveys.each do |survey| %>
-  <a href="/users/<%= survey.user_id %>/surveys/<%= survey.id %>">
-    <div class="card">
-      <h3><%= survey.title %></h3>
-      <h4>by <%= survey.user.username %></h4>
+<div class="a_b">
+  <div class="a_col">
+    <div class="card muted">
+      <h3>Create a new survey!</h3>
     </div>
-  </a>
-  <% end %>
+    <%
+      if @surveys.length > 0
+        @surveys.each do |survey|
+    %>
+        <div class="card">
+          <span class="card-corner"><strong>Questions:</strong> <%= survey.questions.count %></span>
+          <a href="/users/<%= survey.user_id %>/surveys/<%= survey.id %>">
+            <h3><%= survey.title %></h3>
+            <h4>by <%= survey.user.username %></h4>
+          </a>
+        </div>
+        <% end %>
+        <% else %>
+        <div class="card">
+          <p class="muted">(Nobody has made any surveys yet... That's weird.)</h3>
+        </div>
+    <% end %>
+  </div>
 </div>

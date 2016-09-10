@@ -2,21 +2,21 @@
 SINGLE SELECT QUESTION
 -->
 <div class="question-area">
-  <h3><%= question.prompt %></h3>
-  <% answer = @current_user_response.answers.find_by(:question_id => question.id).answer if @current_user_response %>
-  <div id="single" class="single-select-question-input question-input">
-    <div class="question-section">
-      <% question.choices.each do |choice| %>
-      <label>
-        <% if answer.to_i == choice.id.to_i %>
-          <input type="radio" name="questions[<%= question.id %>]" value="<%= choice.id %>" checked />
-        <% else %>
-          <input type="radio" name="questions[<%= question.id %>]" value="<%= choice.id %>" />
+  <div class="single-question-input question-section">
+    <h3><%= question.prompt %></h3>
+    <% answer = @current_user_response.answers.find_by(:question_id => question.id).answer if @current_user_response %>
+    <div class="single-select-question-input question-input">
+        <% question.choices.each do |choice| %>
+        <label>
+          <% if answer.to_i == choice.id.to_i %>
+            <input type="radio" name="questions[<%= question.id %>]" value="<%= choice.id %>" checked />
+          <% else %>
+            <input type="radio" name="questions[<%= question.id %>]" value="<%= choice.id %>" />
+          <% end %>
+          <span class="select-label"><%= choice.text %></span>
+        </label>
         <% end %>
-        <span class="select-label"><%= choice.text %></span>
-      </label>
-      <% end %>
-      <input type="hidden" class="question-type" value="single">
+        <input type="hidden" class="question-type" value="single">
     </div>
   </div>
 </div>

@@ -36,7 +36,8 @@ class SurveysController < ApplicationController
               answer_text = params[:questions][question_id][0]
           end #case
           answer = @response.answers.find_or_create_by(:question_id => question_id)
-          answer.update(:answer => answer_text)
+          byebug
+          answer.update(:answer => answer_text) # needs choice ID.
         end # params[:questions].each
       end # Answer.transaction
     end # Response.transaction

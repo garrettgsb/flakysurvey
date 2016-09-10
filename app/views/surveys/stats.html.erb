@@ -4,10 +4,28 @@
 <% @questions.each do |question| %>
   <div class="card">
     <h4><%= question.prompt %></h4>
-    <p><strong>Responses:</strong> <%= Random.rand(0..200) %></p>
-    <p>
+    <p class="card-corner"><strong>Answers:</strong> <%= question.answers.count %></p>
+    <% if question.question_type == "text" %>
+      <% question.answers.each do |answer| %>
+        <p class="card" style="width: 60%; margin: auto;">"<%= answer.answer %>"</p>
+      <% end %>
+    <% elsif question.question_type == "single" %>
+      <% question.choices.each do |choice| %>
+        <p><%= choice.text %>: <%= question.answers.where(:answer => choice.id).length %></p>
+        <% end %>
+    <% else %>
+      <%
+      answer_tally = {}
+      question.answers.all.each do |answer|
+        split_answers = answer.answer.split(',')
+        split_answers.each { |a| answer_tally.keys.include?(a) ? answer_tally[a] += 1 : answer_tally[a] = 1 }
+      end
+      question.choices.each do |choice|
+    %>
+        <p><%= choice.text %>: <%= answer_tally[choice.id.to_s] if answer_tally[choice.id.to_s] %></p>
+    <% end %>
+
+
+    <% end %>
   </div>
 <% end %>
-
-<%= link_to 'Edit', "/users/#{params[:user_id]}/surveys/#{params[:id]}/edit" %> |
-<%= link_to 'Back', user_surveys_path %>

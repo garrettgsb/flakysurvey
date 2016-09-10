@@ -3,6 +3,7 @@ This file contains CSS pertaining to layout template files, such as views/layout
  */
 
  :root {
+   --accent-text: #F66;
    --muted: #324;
    --muted-text: #888;
    --highlight: #525;
@@ -63,8 +64,15 @@ a:hover {
   border: 1px solid rgba(0,0,0,0);
   display: block;
   padding: 20px;
+  position: relative;
   margin: 5px;
   text-align: center;
+}
+.card > .card-corner {
+  display: block;
+  position: absolute;
+  right: 3px;
+  top: 3px;"
 }
 
 .card > p, .card > h3 {
@@ -87,6 +95,15 @@ a:hover {
   border: 1px dashed #444;
   background-color: #AAA;
   margin: 4px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2em;
+}
+
+h1.muted, h2.muted, h3.muted, h4.muted, h5.muted, h6.muted, p.muted, span.muted {
+  text-shadow: 0px 0px 2px var(--muted-text);
+  color: rgba(0,0,0,0.1);
 }
 
 .heading {
@@ -178,8 +195,14 @@ main {
 }
 
 .question-input {
-  display: inline-block;
-  width: 50%;
+  background: #F8F8F8;
+  border: 1px solid rgba(240,240,240,1);
+  display: block;
+  padding: 20px;
+  margin: 5px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 100%
 }
 
 .question-preview {
@@ -193,14 +216,8 @@ main {
 }
 
 .question-section {
-  background: #F8F8F8;
-  border: 1px solid rgba(240,240,240,1);
-  display: block;
-  padding: 20px;
-  margin: 5px;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  width: 100%
+  display: inline-block;
+  width: 50%;  
 }
 
 .response-list {
@@ -214,6 +231,11 @@ main {
 
 .survey-list {
   display: inline-block;
+}
+
+.survey-title {
+  color: var(--accent-text);
+  font-weight: 800;
 }
 
 textarea {
@@ -236,6 +258,11 @@ textarea:focus {
   box-shadow: 1px 3px 1px 2px #AAA;
   background-color: var(--highlight);
   color: #EFEFEF;
+}
+
+.thanks {
+  font-weight: 400;
+  line-height: 1.5em;
 }
 
 .top-bar {

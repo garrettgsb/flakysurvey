@@ -1,20 +1,16 @@
 <h1><%= @this_user.username %>'s Survey Responses</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="a_b">
+  <div class="a_col">
     <% @responses.each do |response| %>
-      <tr>
-        <td><%= link_to response.survey.title, user_response_url(@current_user, response) %></td>
-        <% if @my_survey %>
-          <td><%= link_to '♻︎ Del', user_response_url(response.user, response), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+        <div class="card">
+          <% if @this_user == @current_user %>
+            <span class="card-corner"><%= link_to '♻︎ Del', user_response_url(response.user, response), method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          <% end %>
+          <a href="/users/<%= response.user.id %>/responses/<%= response.id %>">
+            <h2><%= link_to response.survey.title, user_response_url(@current_user, response) %></h2>
+            <h3>by <%= response.survey.user.username %></h3>
+          </a>
+        </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

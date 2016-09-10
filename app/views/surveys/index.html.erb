@@ -1,25 +1,28 @@
 <h1><%= @this_user.username %>'s Surveys</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @surveys.each do |survey| %>
-      <tr>
-        <td><%= link_to survey.title, user_survey_url(@current_user, survey) %></td>
-        <% if @my_survey %>
-          <td><%= link_to '✎ Edit', edit_user_survey_path(@current_user, survey) %></td>
-          <td><%= link_to '♻︎ Del', user_survey_url(survey.user, survey), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+<div class="a_b">
+  <div class="a_col">
+    <% if @this_user == @current_user %>
+      <a href="/users/<%=@this_user.id%>/surveys/new">
+        <div class="card muted">
+          <h3>Create a new survey!</h3>
+        </div>
+      </a>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <%
+    if @surveys.length > 0
+      @surveys.each do |survey| %>
+        <div class="card">
+          <span class="card-corner"><%= link_to '♻︎ Del', user_survey_url(survey.user, survey), method: :delete, data: { confirm: 'Are you sure?' } %></span>
+          <a href="/users/<%= survey.user.id %>/surveys/<%= survey.id %>"><h3><%= survey.title %></h3>
+          <h4>by <%= survey.user.username %></h4></a>
+        </div>
+      <% end %>
+    <% else %>
+    <div class="card">
+      <p class="muted">Empty :(</p>
+    </div>
 
-<%= link_to 'New Survey', new_user_survey_path %>
+    <% end %>
+  </div>
+</div>

@@ -2,28 +2,26 @@
 MULTI SELECT QUESTION
 -->
 <div class="question-area">
-  <h3><%= question.prompt %></h3>
-  <%
-    if @current_user_response
-      answer = @current_user_response.answers.find_by(:question_id => question.id).answer
-      answer = answer.split(',')
-    end
-  %>
-  <div id="multi" class="multi-select-question">
-    <div id="multi" class="multi-select-question-input question-input">
-      <div class="question-section">
-        <% question.choices.each do |choice| %>
-          <label>
-            <% if answer && (answer.include? choice.id.to_s) %>
-              <input type="checkbox" name="questions[<%= question.id %>][<%= choice.id %>][]" checked="checked"/>
-            <% else %>
-              <input type="checkbox" name="questions[<%= question.id %>][<%= choice.id %>][]"/>
-            <% end %>
-            <span class="select-label"><%= choice.text %></span>
-          </label>
-        <% end %>
-        <input type="hidden" class="question-type" value="multi">
-      </div>
+  <div class="multi-question-input question-section">
+    <h3><%= question.prompt %></h3>
+    <%
+      if @current_user_response
+        answer = @current_user_response.answers.find_by(:question_id => question.id).answer
+        answer = answer.split(',')
+      end
+    %>
+    <div  class="multi-select-question question-input">
+      <% question.choices.each do |choice| %>
+        <label>
+          <% if answer && (answer.include? choice.id.to_s) %>
+            <input type="checkbox" name="questions[<%= question.id %>][<%= choice.id %>][]" checked="checked"/>
+          <% else %>
+            <input type="checkbox" name="questions[<%= question.id %>][<%= choice.id %>][]"/>
+          <% end %>
+          <span class="select-label"><%= choice.text %></span>
+        </label>
+      <% end %>
+      <input type="hidden" class="question-type" value="multi">
     </div>
   </div>
 </div>

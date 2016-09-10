@@ -2,9 +2,9 @@
 TEXT QUESTION
 -->
 <div class="question-area">
-  <div id="text" class="text-question-input question-input">
+  <div  class="text-question-input question-section">
     <h3><%= question.prompt %></h3>
-    <div class="question-section">
+    <div class="question-input">
       <textarea cols="50" rows="4" name="questions[<%=question.id%>][answer]"><%= @current_user_response ? @current_user_response.answers.find_by(:question_id => question.id).answer : question.placeholder %></textarea>
     </div>
     <input type="hidden" class="question-type" value="text">
