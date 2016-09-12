@@ -173,7 +173,7 @@ main {
   margin: 5px;
 }
 
-.question-input > span {
+.question-section > span {
   margin-left: 26px;
 }
 
@@ -217,7 +217,7 @@ main {
 
 .question-section {
   display: inline-block;
-  width: 50%;  
+  width: 50%;
 }
 
 .response-list {

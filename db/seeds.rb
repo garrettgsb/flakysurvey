@@ -463,18 +463,20 @@ def generate_survey_title
   ]
 
   survey_7 = [
-    "amplifying ",
     "avoiding the marginalization of ",
     "decreasing the unemployment rate of ",
-    "increasing population growth of ",
     "contacting",
 
     "facilitating ",
     "fostering a culture of ",
 
+    "increasing the population growth of ",
     "increasing the productivity of ",
+    "increasing the satisfaction of ",
+    "increasing the volume of ",
     "increasing wealth among ",
 
+    "improving ",
     "improving the performance of ",
 
     "preventing ",

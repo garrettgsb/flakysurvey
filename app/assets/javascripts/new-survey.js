@@ -54,4 +54,30 @@ $(document).ready(function(){
     });
     $(`#question-${questionCount}`).before(`<h2>Question ${questionCount}</h2>`);
   });
+
+  $("body").on('click', '.add-option-single', function() {
+    var emojis = ["😶", "😎", "🤔", "😳", "🤖", "😴","🙃","😁","😐","🙄","😤","😵","😂","😅","🙊","🙉","🙈"];
+    var placeholder = emojis[parseInt(Math.random() * emojis.length)];
+    var button_name = $(this).siblings().find(".radio").first().attr('name');
+    var label_name = $(this).siblings().find(".radio-label").first().attr('name');
+    $(this).before(`<label class="new-radio">
+    <input type="radio" class="radio" name="${button_name}" />
+    <input type="text" class="radio-label" name="${label_name}" placeholder="${placeholder}">
+  </label>`);
+});
+
+$("body").on('click', '.add-option-multi', function() {
+    var emojis = ["😶", "😎", "🤔", "😳", "🤖", "😴","🙃","😁","😐","🙄","😤","😵","😂","😅","🙊","🙉","🙈"];
+    var placeholder = emojis[parseInt(Math.random() * emojis.length)];
+    var button_name = $(this).siblings().find(".checkbox").first().attr('name');
+    var label_name = $(this).siblings().find(".checkbox-label").first().attr('name');
+    $(this).before(`<label class="new-multi">
+      <input type="checkbox" name="${button_name}" />
+      <input type="text" class="checkbox-label" name="${label_name}" placeholder="${placeholder}">
+    </label>`);
+});
+
+  $(".add-option-multi").on('click', function() {
+    // Add an option to the parent.
+  });
 });
